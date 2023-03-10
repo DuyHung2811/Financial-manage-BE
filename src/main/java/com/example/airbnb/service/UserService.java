@@ -4,6 +4,7 @@ import com.example.airbnb.model.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService extends UserDetailsService {
@@ -12,6 +13,8 @@ public interface UserService extends UserDetailsService {
     User lockUser(Long id, User user);
 
     User unLockUser(Long id, User user);
+
+    Iterable<User> adminFindUser(String username);
 
     Iterable<User> findAll();
 

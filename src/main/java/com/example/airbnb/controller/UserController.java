@@ -126,7 +126,7 @@ public class UserController {
         String jwt = jwtService.generateTokenLogin(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         User currentUser = userService.findByUsername(user.getUsername());
-        return ResponseEntity.ok(new JwtResponse(jwt, currentUser.getId(), userDetails.getUsername(), userDetails.getAuthorities()));
+        return ResponseEntity.ok(new JwtResponse(jwt, currentUser.getId(), userDetails.getUsername(),currentUser.getStatus(), userDetails.getAuthorities()));
     }
 
 
@@ -188,6 +188,12 @@ public class UserController {
     public ResponseEntity<User> findByUsername(@PathVariable String username) {
         User user = userService.findByUsername(username);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("admin/find-user")
+    public ResponseEntity<Iterable<User>> adminFindUser(@RequestParam String username) {
+        Iterable<User> listUser = userService.adminFindUser(username);
+        return new ResponseEntity<>(listUser, HttpStatus.OK);
     }
 
 

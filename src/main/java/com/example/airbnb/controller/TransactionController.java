@@ -144,7 +144,7 @@ public class TransactionController {
         } else {
             currentMonth = firstYear + "-" + firstMonth + "-0" + firstDay;
         }
-        transactionIncome.put(firstMonth, transactionService.findAllTransactionsIncomeFor6Months(id, presentTime, currentMonth));
+        transactionIncome.put(firstMonth, transactionService.findAllTransactionsIncomeFor6Months(id, presentTime, currentMonth));//3-6=> 3 12-3
         firstDay = 31;
         for (int i = 1; i < 6; i++) {
             String timeNow;
@@ -152,7 +152,7 @@ public class TransactionController {
             int day = 1;
             firstMonth = Integer.parseInt(time[1]) - i;
             if (firstMonth < 1) {
-                firstMonth = 12;
+                firstMonth = 12 + firstMonth;
                 firstYear = firstYear - 1;
             }
             if (firstMonth < 10) {
@@ -190,7 +190,7 @@ public class TransactionController {
             int day = 1;
             firstMonth = Integer.parseInt(time[1]) - i;
             if (firstMonth < 1) {
-                firstMonth = 12;
+                firstMonth = 12 + firstMonth;
                 firstYear = firstYear - 1;
             }
             if (firstMonth < 10) {
