@@ -76,4 +76,24 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
             "where time >= :startTime and time<= :endTime and c.status= :status and total_spent between :from and :to and wallet_id = :id",nativeQuery = true)
     Iterable<Transaction>findAllByTransaction(@Param("startTime")String startTime,@Param("endTime")String endTime,@Param("status")Long status,@Param("from")Long from,@Param("to")Long to,@Param("id")Long id);
 
+    //giao dich thu tu truoc den nay
+    @Query(value = "select sum(t.total_spent) as TongThu from transaction t\n" +
+            "join wallet w on t.wallet_id = w.id\n" +
+            "join category c on c.id = t.category_id\n" +
+            "where w.id = :id and c.status = 1",nativeQuery = true)
+    Iterable<Double>findAllTransactionsIncome(@PathVariable Long id);
+
+    // giao dich chi tu truoc den nay
+    @Query(value = "select sum(t.total_spent) as TongChi from transaction t\n" +
+            "join wallet w on t.wallet_id = w.id\n" +
+            "join category c on c.id = t.category_id\n" +
+            "where w.id = :id and c.status = 2",nativeQuery = true)
+    Iterable<Double>findAllTransactionsExpense(@PathVariable Long id);
+
+//    //tim giao dich chi tu truoc den nay
+//    @Query(value = "select * from transaction t\n" +
+//            "join wallet w on t.wallet_id = w.id\n" +
+//            "join category c on c.id = t.category_id\n" +
+//            "where w.id = :id and c.status = 2",nativeQuery = true)
+//    Iterable<Transaction>findAllTransactionsExpense(@PathVariable Long id);
 }

@@ -73,7 +73,7 @@ public class UserController {
         return new ResponseEntity<>(user1, HttpStatus.OK);
     }
 
-    @PutMapping("/admin//unlock-user/{id}")
+    @PutMapping("/admin/unlock-user/{id}")
     public ResponseEntity<?> unLockUser(@PathVariable Long id, @RequestBody User user) {
         User user1 = userService.unLockUser(id, user);
         return new ResponseEntity<>(user1, HttpStatus.OK);
@@ -190,7 +190,7 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @GetMapping("admin/find-user")
+    @GetMapping("/admin/find-user")
     public ResponseEntity<Iterable<User>> adminFindUser(@RequestParam String username) {
         Iterable<User> listUser = userService.adminFindUser(username);
         return new ResponseEntity<>(listUser, HttpStatus.OK);

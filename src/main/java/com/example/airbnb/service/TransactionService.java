@@ -28,5 +28,9 @@ public interface TransactionService {
 
     Iterable<Transaction>findAllTransactionsExpenseFor6Months(Long id, String presentTime, String sixMonthsAgo);
 
+    Iterable<Double>findAllTransactionsExpense(Long id);
+
+    Iterable<Double>findAllTransactionIncome(Long id);
+
     Iterable<Transaction>findAllByTransaction(String startTime,String endTime,Long status,Long from,Long to,Long id);
 }

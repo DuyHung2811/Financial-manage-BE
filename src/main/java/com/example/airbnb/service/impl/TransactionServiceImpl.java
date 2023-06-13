@@ -64,6 +64,17 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
+    public Iterable<Double> findAllTransactionsExpense(Long id) {
+        return transactionRepository.findAllTransactionsExpense(id);
+    }
+
+    @Override
+    public Iterable<Double> findAllTransactionIncome(Long id) {
+        return transactionRepository.findAllTransactionsIncome(id);
+    }
+
+
+    @Override
     public Iterable<Transaction> findAllByTransaction(String startTime, String endTime, Long status, Long from, Long to, Long id) {
         return transactionRepository.findAllByTransaction(startTime, endTime, status, from, to, id);
     }

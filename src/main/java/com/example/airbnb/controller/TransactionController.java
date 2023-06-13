@@ -124,6 +124,12 @@ public class TransactionController {
         return new ResponseEntity<>(transactionService.findAllByMonthTimeAndYearTime(status, month, id), HttpStatus.OK);
     }
 
+//    @GetMapping("find-all-by-time")
+//    public ResponseEntity<Iterable<Transaction>> findAllByMonthTimeAndYearTime(@RequestParam("status") int status, @RequestParam(value = "id", required = true) int id) {
+//        String month = String.valueOf(YearMonth.now());
+//        return new ResponseEntity<>(transactionService.findAllByMonthTimeAndYearTime(status, month, id), HttpStatus.OK);
+//    }
+
     @GetMapping("find-all-by-time2")
     public ResponseEntity<Iterable<Transaction>> findAllByMonthTimeAndYearTime(@RequestParam("id") int id) {
         String month = String.valueOf(YearMonth.now());
@@ -204,6 +210,21 @@ public class TransactionController {
         }
         System.out.println(transactionExpense);
         return new ResponseEntity<>(transactionExpense, HttpStatus.OK);
+    }
+
+//    @GetMapping("find-all-trasactions-expense")
+//    public ResponseEntity<Iterable<Transaction>> findAllTransactionsExpense(@RequestParam("id") long id) {
+//        return new ResponseEntity<>(transactionService.findAllTransactionsExpense(id), HttpStatus.OK);
+//    }
+
+    @GetMapping("find-all-trasaction-income")
+    public ResponseEntity<Iterable<Double>> findAllTransactionIncome(@RequestParam("id") long id) {
+        return new ResponseEntity<>(transactionService.findAllTransactionIncome(id), HttpStatus.OK);
+    }
+
+    @GetMapping("find-all-trasaction-expense")
+    public ResponseEntity<Iterable<Double>> findAllTransactionExpense(@RequestParam("id") long id) {
+        return new ResponseEntity<>(transactionService.findAllTransactionsExpense(id), HttpStatus.OK);
     }
 
     @GetMapping("find-all-transaction")
